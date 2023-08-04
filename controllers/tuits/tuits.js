@@ -10,7 +10,8 @@ export default [
     "replys": 123,
     "retuits": 432,
     "likes": 12345,
-    "dislikes": 0,
+    "disliked": true,
+    "dislikes": 1,
     "handle": "@SesameStreet",
     "tuitContent": "It's time to relax, unwind, and enjoy some well-deserved fun! 😄 Whether you're spending time with loved ones, exploring the great outdoors, or simply taking a moment to yourself, make the most of this weekend! 🌈💕 Sending lots of positive vibes and happiness your way! 🤗💖"
   },
@@ -25,7 +26,8 @@ export default [
     "replys": 432,
     "retuits": 654,
     "likes": 32345,
-    "dislikes": 0,
+    "disliked": true,
+    "dislikes": 1,
     "handle": "@SesameStreet",
     "tuitContent": "Wishing you a sunny and delightful weekend ahead! 🌞💛 Whether you're playing games, reading stories, or just having fun, make it a memorable one! 🎈🎉 Remember, sharing kindness and laughter makes the weekend even better! 🤗💕"
   },
@@ -40,7 +42,8 @@ export default [
     "replys": 321,
     "retuits": 543,
     "likes": 22345,
-    "dislikes": 2,
+    "disliked": true,
+    "dislikes": 1,
     "handle": "@SesameStreet",
     "tuitContent": "¡Rosita sí! 🐝💃 Ya sea bailando, cantando o explorando nuevos lugares, aprovechen al máximo cada momento. ¡Recuerden siempre compartir amor y alegría con todos! 🤗💖 ¡Que tengan un increíble fin de semana! 🌈🌺 "
   }
