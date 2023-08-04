@@ -9,26 +9,26 @@ import AuthController from "./users/auth-controller.js";
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3000", // 本地开发的URL
-  "https://wondrous-melomakarona-2fbb55.netlify.app" // 云上部署的URL
-];
-app.use(cors({
-  credentials: true,
-  origin: function (origin, callback) {
-    // 检查来源是否在允许的列表中
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  }
-}));
+// const allowedOrigins = [
+//   "http://localhost:3000", // 本地开发的URL
+//   "https://wondrous-melomakarona-2fbb55.netlify.app" // 云上部署的URL
+// ];
 // app.use(cors({
-//     credentials: true,
-//     // origin: "http://localhost:3000",
-//     origin: process.env.FRONTEND_URL
-// }))
+//   credentials: true,
+//   origin: function (origin, callback) {
+//     // 检查来源是否在允许的列表中
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   }
+// }));
+app.use(cors({
+    credentials: true,
+    // origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL
+}))
 const sessionOptions = {
     secret: "any string",
     resave: false,
