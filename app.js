@@ -18,7 +18,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000", 
-  "https://wondrous-melomakarona-2fbb55.netlify.app" 
+  "https://wondrous-melomakarona-2fbb55.netlify.app", 
+  "https://glittery-sunshine-911b3b.netlify.app"
 ];
 app.use(cors({
   credentials: true,
