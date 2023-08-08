@@ -17,13 +17,12 @@ mongoose.connect(CONNECTION_STRING);
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000", // 本地开发的URL
-  "https://wondrous-melomakarona-2fbb55.netlify.app" // 云上部署的URL
+  "http://localhost:3000", 
+  "https://wondrous-melomakarona-2fbb55.netlify.app" 
 ];
 app.use(cors({
   credentials: true,
   origin: function (origin, callback) {
-    // 检查来源是否在允许的列表中
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
