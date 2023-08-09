@@ -19,7 +19,8 @@ const createTuit = async (req, res) => {
     newTuit.tuitContent = req.body.tuitContent;
     newTuit.image = "Kermit.jpg";
     newTuit.handle = "@Sesame Street";
-    newTuit.time = "now"
+    newTuit.time = "now";
+    newTuit.userName = "Kermit"
     const insertedTuit = await tuitsDao.createTuit(newTuit);
     // res.json(newTuit);
     res.json(insertedTuit);

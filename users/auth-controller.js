@@ -19,7 +19,10 @@ const AuthController = (app) => {
 			console.log("you have already regisered, please login");
 			return;
 		}
-		const newUser = await usersDao.createUser(req.body);
+		const createdUser = req.body;
+		createdUser.firstName = "Kermit";
+  	createdUser.lastName = "Yan";
+		const newUser = await usersDao.createUser(createdUser);
 		req.session["currentUser"] = newUser;
 		console.log("register", newUser);
 		res.json(newUser);
@@ -44,12 +47,9 @@ const AuthController = (app) => {
 			const user = await usersDao.findUserByCredentials(username, password);
 			console.log("login-", user);
 			if(user){
-				console.log("User found:", user);
 				req.session["currentUser"] = user;
-				console.log("current-session: " ,req.session["currentUser"])
 				res.json(user);
 			}else{
-				console.log("login - User not found.");
 				res.sendStatus(403);
 			}
 		}else{
@@ -62,7 +62,6 @@ const AuthController = (app) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
       res.sendStatus(404);
-			console.log("profile - cannot find this user");
 			return;
     }
 		res.json(currentUser);
@@ -73,6 +72,7 @@ const AuthController = (app) => {
     req.session.destroy();
     res.sendStatus(200); 
  	};
+
  	const update = (req, res) => {
     const currentUser = req.session["currentUser"];
     if(!currentUser){

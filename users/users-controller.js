@@ -61,8 +61,6 @@ const findUserById = async (req, res) => {
 // }
 const createUser = async (req, res) => {
   const newUser = req.body;
-  newUser.firstName = "Kermit";
-  newUser.lastName = "Yan";
   const createdUser = await usersDao.createUser(newUser);
   res.json(createdUser);
 };
