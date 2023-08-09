@@ -23,7 +23,7 @@ const findAllUsers = async (req, res) => {
   const username = req.query.username;
   const password = req.query.password;
   if (username && password) {
-    const user = await usersDao.findUserByCredentials(username, password);
+    const user = await usersDao.findUserByCredentials({username, password});
     if (user) {
       res.json(user);
     } else {
@@ -60,8 +60,11 @@ const findUserById = async (req, res) => {
 //     res.json(newUser);
 // }
 const createUser = async (req, res) => {
-  const newUser = await usersDao.createUser(req.body);
-  res.json(newUser);
+  const newUser = req.body;
+  newUser.firstName = "Kermit";
+  newUser.lastName = "Yan";
+  const createdUser = await usersDao.createUser(newUser);
+  res.json(createdUser);
 };
 
 // const updateUser = (req, res) => {

@@ -21,6 +21,7 @@ const AuthController = (app) => {
 		}
 		const newUser = await usersDao.createUser(req.body);
 		req.session["currentUser"] = newUser;
+		console.log("register", newUser);
 		res.json(newUser);
 	}
 
@@ -41,28 +42,31 @@ const AuthController = (app) => {
 		const password = req.body.password;
 		if(username && password){
 			const user = await usersDao.findUserByCredentials(username, password);
+			console.log("login-", user);
 			if(user){
 				console.log("User found:", user);
 				req.session["currentUser"] = user;
+				console.log("current-session: " ,req.session["currentUser"])
 				res.json(user);
 			}else{
-				console.log("User not found.");
+				console.log("login - User not found.");
 				res.sendStatus(403);
 			}
 		}else{
-			console.log("Missing username or password.");
       res.sendStatus(403);
 		}
 	}
 
  	const profile = (req, res) => {
+		console.log(req.session["currentUser"]);
     const currentUser = req.session["currentUser"];
-    if (currentUser) {
-      res.json(currentUser);
-    }else{
-			res.sendStatus(404);
-			console.log("cannot find this user");
-		}
+    if (!currentUser) {
+      res.sendStatus(404);
+			console.log("profile - cannot find this user");
+			return;
+    }
+		res.json(currentUser);
+		
  	};
 
  	const logout = (req, res) => {
