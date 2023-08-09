@@ -82,7 +82,7 @@ const AuthController = (app) => {
         res.sendStatus(404);
         return;
     }
-    usersDao.updateUser(uid, updatedUser);
+    usersDao.updatedUser(uid, updatedUser);
     res.json(usersDao.findUserById(uid));
  	};
  
