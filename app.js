@@ -22,11 +22,11 @@ const allowedOrigins = [
 app.use(cors({
   credentials: true,
   origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin)) {
+    // if (allowedOrigins.includes(origin)) {
       callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+    // } else {
+    //   callback(new Error("Not allowed by CORS"));
+    // }
   }
 }));
 // app.use(cors({
