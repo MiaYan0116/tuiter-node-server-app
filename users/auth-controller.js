@@ -8,7 +8,10 @@ const AuthController = (app) => {
         res.sendStatus(409);
         return;
     }
-    const newUser = usersDao.createUser(req.body);
+    const createdUser = req.body;
+    createdUser.firstName = "Gary";
+    createdUser.lastName = "Yan";
+    const newUser = usersDao.createUser(createdUser);
     req.session["currentUser"] = newUser;
     res.json(newUser);
  };
