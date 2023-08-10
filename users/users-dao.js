@@ -24,22 +24,10 @@ export const createUser = (user) => {
     return user;
 };
 
-export const updateUser = (uid, updatedUser) => {
-    const currentUser = req.session["currentUser"];
-    if (!currentUser) {
-        res.sendStatus(404);
-        return;
-    }
-    const user = usersDao.findUserById(currentUser._id);
-    if (!user) {
-        res.sendStatus(404);
-        return;
-    }
-    const updatedUserData = usersDao.updateUser(uid, updatedUser);
-    res.json(updatedUserData);
-//  const index = users.findIndex((u) => u._id === uid);
-//  users[index] = { ...users[index], ...user };
-//  return {status: 'ok'}
+export const updateUser = (uid, user) => {
+  const index = users.findIndex((u) => u._id === uid);
+  users[index] = { ...users[index], ...user };
+  return {status: 'ok'}
 };
 
 export const deleteUser = (uid) => {

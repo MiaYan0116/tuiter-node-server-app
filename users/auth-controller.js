@@ -11,6 +11,7 @@ const AuthController = (app) => {
     const createdUser = req.body;
     createdUser.firstName = "Gary";
     createdUser.lastName = "Yan";
+    createdUser._id = (new Date()).getTime() + '';
     const newUser = usersDao.createUser(createdUser);
     req.session["currentUser"] = newUser;
     res.json(newUser);
@@ -30,6 +31,7 @@ const AuthController = (app) => {
  };
  const profile = (req, res) => {
     const currentUser = req.session["currentUser"];
+    console.log(currentUser);//0810 11:39
     if (!currentUser) {
       res.sendStatus(404);
       return;
@@ -41,8 +43,11 @@ const AuthController = (app) => {
     req.session.destroy();
     res.sendStatus(200); 
  };
+
  const update = (req, res) => {
     const currentUser = req.session["currentUser"];
+    console.log("before update: ", currentUser);//0810 11:41
+    console.log(currentUser);
     if(!currentUser){
         res.sendStatus(404);
         return;
@@ -55,6 +60,7 @@ const AuthController = (app) => {
         return;
     }
     usersDao.updateUser(uid, updatedUser);
+    console.log("After update:", usersDao.findUserById(uid));
     res.json(usersDao.findUserById(uid));
  };
  

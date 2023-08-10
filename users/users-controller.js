@@ -1,10 +1,13 @@
+import { deleteUser } from './users-dao.js';
 import people from './users.js'
 let users = people
+
 const UserController = (app) => {
     app.get('/api/users', findUsers)
     app.get('/api/users/:uid', findUserById);
     app.post('/api/users', createUser);
     app.put('/api/users/:uid', updateUser);
+    app.delete('/api/user/:uid', deleteUser);
 }
 
 const findUsers = (req, res) => {
