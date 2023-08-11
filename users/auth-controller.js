@@ -24,7 +24,7 @@ const AuthController = (app) => {
   	createdUser.lastName = "Yan";
 		const newUser = await usersDao.createUser(createdUser);
 		req.session["currentUser"] = newUser;
-		console.log("register", newUser);
+		// console.log("register", newUser);
 		res.json(newUser);
 	}
 
@@ -45,7 +45,6 @@ const AuthController = (app) => {
 		const password = req.body.password;
 		if(username && password){
 			const user = await usersDao.findUserByCredentials(username, password);
-			console.log("login-", user);
 			if(user){
 				req.session["currentUser"] = user;
 				res.json(user);
@@ -58,7 +57,6 @@ const AuthController = (app) => {
 	}
 
  	const profile = (req, res) => {
-		console.log(req.session["currentUser"]);
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
       res.sendStatus(404);
@@ -73,21 +71,22 @@ const AuthController = (app) => {
     res.sendStatus(200); 
  	};
 
- 	const update = (req, res) => {
+ 	const update = async (req, res) => {
     const currentUser = req.session["currentUser"];
+	console.log("before update: ", currentUser);//0810 11:41
     if(!currentUser){
         res.sendStatus(404);
         return;
     }
     const uid = currentUser._id;
     const updatedUser = req.body;
-    const user = usersDao.findUserById(uid);
+    const user = await usersDao.findUserById(uid);
     if(!user){
         res.sendStatus(404);
         return;
     }
-    usersDao.updatedUser(uid, updatedUser);
-    res.json(usersDao.findUserById(uid));
+    const updataedData = await usersDao.updatedUser(uid, updatedUser);
+    res.json(updataedData);
  	};
  
  app.post("/api/users/register", register);
